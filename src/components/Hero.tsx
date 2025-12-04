@@ -8,8 +8,9 @@ const Hero = () => {
       position: 'relative',
       overflow: 'hidden',
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'center',
+      paddingTop: '15vh',
       color: 'var(--color-text)'
     }}>
       {/* Content */}
@@ -27,7 +28,7 @@ const Hero = () => {
             color: 'var(--color-accent)'
           }}
         >
-          Save The Date
+          ¡NOS CASAMOS!
         </motion.p>
 
         <motion.h1
@@ -41,9 +42,9 @@ const Hero = () => {
             color: 'var(--color-primary)'
           }}
         >
-          <span className="italic">Jorge</span> <br />
+          <span className="italic">Paula</span> <br />
           <span style={{ fontSize: '0.5em', verticalAlign: 'middle', opacity: 0.6 }}>&</span> <br />
-          <span className="italic">Paula</span>
+          <span className="italic">Jorge</span>
         </motion.h1>
 
         <motion.div
@@ -71,7 +72,7 @@ const Hero = () => {
             letterSpacing: '0.2em',
             margin: 0
           }}>
-            Zaragoza
+            12:30h - Catedral de La Seo - Zaragoza
           </p>
         </motion.div>
       </div>

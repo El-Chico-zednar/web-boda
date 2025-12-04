@@ -1,5 +1,6 @@
 import Hero from './components/Hero';
-import Story from './components/Story';
+import ParallaxSection from './components/ParallaxSection';
+import Timeline from './components/Timeline';
 import Details from './components/Details';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
@@ -8,7 +9,8 @@ function App() {
   return (
     <div className="app">
       <Hero />
-      <Story />
+      <ParallaxSection />
+      <Timeline />
       <Details />
       <RSVP />
       <Footer />
