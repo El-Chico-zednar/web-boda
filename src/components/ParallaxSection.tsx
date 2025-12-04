@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 const ParallaxSection = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
     const { scrollYProgress } = useScroll({
@@ -40,24 +39,7 @@ const ParallaxSection = () => {
         const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
         setPrefersReducedMotion(mediaQuery.matches);
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
-
-        return () => {
-            if (containerRef.current) {
-                observer.unobserve(containerRef.current);
-            }
-        };
+        setPrefersReducedMotion(mediaQuery.matches);
     }, []);
 
     // Custom easing for organic feel
