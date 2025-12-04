@@ -7,6 +7,7 @@ const RSVP = () => {
         fullName: '',
         email: '',
         guests: '1',
+        transport: 'autobus',
         diet: ''
     });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -31,6 +32,7 @@ const RSVP = () => {
                         full_name: formData.fullName,
                         email: formData.email,
                         guests_count: parseInt(formData.guests),
+                        transportation: formData.transport,
                         dietary_restrictions: formData.diet
                     }
                 ]);
@@ -38,12 +40,12 @@ const RSVP = () => {
             if (error) throw error;
 
             setStatus('success');
-            setMessage('Thank you! Your RSVP has been received.');
-            setFormData({ fullName: '', email: '', guests: '1', diet: '' });
+            setMessage('¡Gracias! Hemos recibido tu confirmación.');
+            setFormData({ fullName: '', email: '', guests: '1', transport: 'autobus', diet: '' });
         } catch (error) {
             console.error('Error submitting RSVP:', error);
             setStatus('error');
-            setMessage('Something went wrong. Please try again later.');
+            setMessage('Algo salió mal. Por favor, inténtalo de nuevo más tarde.');
         }
     };
 
@@ -87,7 +89,7 @@ const RSVP = () => {
                         maxWidth: '600px',
                         margin: '0 auto 4rem'
                     }}>
-                        Please let us know if you can make it by August 1, 2025.
+                        Por favor, confírmanos tu asistencia antes del 1 de agosto de 2025.
                     </p>
                 </motion.div>
 
@@ -108,26 +110,26 @@ const RSVP = () => {
                     {status === 'success' ? (
                         <div style={{ textAlign: 'center', padding: '2rem 0' }}>
                             <h3 style={{ color: 'var(--color-accent)', marginBottom: '1rem' }}>{message}</h3>
-                            <p>We can't wait to celebrate with you!</p>
+                            <p>¡Estamos deseando celebrarlo contigo!</p>
                             <button
                                 onClick={() => setStatus('idle')}
                                 className="btn"
                                 style={{ marginTop: '2rem' }}
                             >
-                                Send another response
+                                Enviar otra respuesta
                             </button>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit}>
                             <div style={{ marginBottom: '2.5rem' }}>
-                                <label style={labelStyle}>Full Name</label>
+                                <label style={labelStyle}>Nombre Completo</label>
                                 <input
                                     type="text"
                                     name="fullName"
                                     value={formData.fullName}
                                     onChange={handleChange}
                                     style={inputStyle}
-                                    placeholder="Your Name"
+                                    placeholder="Tu Nombre"
                                     required
                                 />
                             </div>
@@ -140,13 +142,13 @@ const RSVP = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     style={inputStyle}
-                                    placeholder="your@email.com"
+                                    placeholder="tu@email.com"
                                     required
                                 />
                             </div>
 
                             <div style={{ marginBottom: '2.5rem' }}>
-                                <label style={labelStyle}>Number of Guests</label>
+                                <label style={labelStyle}>Número de Invitados</label>
                                 <select
                                     name="guests"
                                     value={formData.guests}
@@ -160,14 +162,73 @@ const RSVP = () => {
                                 </select>
                             </div>
 
+                            <div style={{ marginBottom: '2.5rem' }}>
+                                <label style={labelStyle}>¿Cómo acudirás a la finca?</label>
+                                <div style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: '1fr 1fr',
+                                    gap: '1rem',
+                                    marginTop: '1rem'
+                                }}>
+                                    <label style={{
+                                        padding: '1.5rem 1rem',
+                                        border: `2px solid ${formData.transport === 'autobus' ? 'var(--color-primary)' : 'var(--color-secondary)'}`,
+                                        backgroundColor: formData.transport === 'autobus' ? 'rgba(45, 45, 45, 0.03)' : 'transparent',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease',
+                                        textAlign: 'center',
+                                        fontFamily: 'var(--font-body)',
+                                        fontSize: '0.95rem',
+                                        fontWeight: formData.transport === 'autobus' ? 600 : 400,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <input
+                                            type="radio"
+                                            name="transport"
+                                            value="autobus"
+                                            checked={formData.transport === 'autobus'}
+                                            onChange={handleChange}
+                                            style={{ display: 'none' }}
+                                        />
+                                        Autobús
+                                    </label>
+                                    <label style={{
+                                        padding: '1.5rem 1rem',
+                                        border: `2px solid ${formData.transport === 'vehiculo_propio' ? 'var(--color-primary)' : 'var(--color-secondary)'}`,
+                                        backgroundColor: formData.transport === 'vehiculo_propio' ? 'rgba(45, 45, 45, 0.03)' : 'transparent',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease',
+                                        textAlign: 'center',
+                                        fontFamily: 'var(--font-body)',
+                                        fontSize: '0.95rem',
+                                        fontWeight: formData.transport === 'vehiculo_propio' ? 600 : 400,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <input
+                                            type="radio"
+                                            name="transport"
+                                            value="vehiculo_propio"
+                                            checked={formData.transport === 'vehiculo_propio'}
+                                            onChange={handleChange}
+                                            style={{ display: 'none' }}
+                                        />
+                                        Vehículo propio
+                                    </label>
+                                </div>
+                            </div>
+
                             <div style={{ marginBottom: '3rem' }}>
-                                <label style={labelStyle}>Dietary Restrictions</label>
+                                <label style={labelStyle}>Restricciones Alimentarias</label>
                                 <textarea
                                     name="diet"
                                     value={formData.diet}
                                     onChange={handleChange}
                                     style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
-                                    placeholder="Any allergies or special requests?"
+                                    placeholder="¿Alguna alergia o petición especial?"
                                 ></textarea>
                             </div>
 
@@ -181,7 +242,7 @@ const RSVP = () => {
                                 style={{ width: '100%', opacity: status === 'loading' ? 0.7 : 1 }}
                                 disabled={status === 'loading'}
                             >
-                                {status === 'loading' ? 'Sending...' : 'Confirm Attendance'}
+                                {status === 'loading' ? 'Enviando...' : 'Confirmar Asistencia'}
                             </button>
                         </form>
                     )}

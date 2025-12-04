@@ -9,10 +9,10 @@ const Footer = () => {
             fontSize: '0.9rem'
         }}>
             <p style={{ marginBottom: '1rem', fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontStyle: 'italic' }}>
-                Made with love for Ana & Carlos
+                Hecho con amor para Paula & Jorge
             </p>
             <p style={{ opacity: 0.6, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                &copy; 2025 Wedding Website
+                &copy; 2025 Web de Boda
             </p>
         </footer>
     );

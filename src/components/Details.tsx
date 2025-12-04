@@ -27,9 +27,9 @@ const Details = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="italic">The Details</h2>
+                    <h2 className="italic">Los Detalles</h2>
                     <p style={{ marginBottom: '5rem', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 5rem' }}>
-                        Join us for an evening of love, laughter, and happily ever after.
+                        Únete a nosotros para una velada de amor, risas y felicidad eterna.
                     </p>
                 </motion.div>
 
@@ -48,10 +48,10 @@ const Details = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <Calendar size={iconSize} color={iconColor} strokeWidth={1.5} style={{ marginBottom: '1.5rem' }} />
-                        <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 400 }}>When</h3>
-                        <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)', fontStyle: 'italic' }}>September 20, 2025</p>
+                        <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 400 }}>Cuándo</h3>
+                        <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)', fontStyle: 'italic' }}>20 de Septiembre, 2025</p>
                         <p style={{ color: 'var(--color-text)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                            Saturday @ 5:00 PM
+                            Sábado @ 17:00
                         </p>
                     </motion.div>
 
@@ -63,10 +63,10 @@ const Details = () => {
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
                         <MapPin size={iconSize} color={iconColor} strokeWidth={1.5} style={{ marginBottom: '1.5rem' }} />
-                        <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 400 }}>Where</h3>
+                        <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 400 }}>Dónde</h3>
                         <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)', fontStyle: 'italic' }}>Finca El Olivar</p>
                         <p style={{ color: 'var(--color-text)', fontSize: '0.9rem', lineHeight: 1.6 }}>
-                            Carretera de Burgos, km 12<br />Madrid, Spain
+                            Carretera de Burgos, km 12<br />Madrid, España
                         </p>
                     </motion.div>
 
@@ -78,11 +78,11 @@ const Details = () => {
                         transition={{ duration: 0.8, delay: 0.6 }}
                     >
                         <Clock size={iconSize} color={iconColor} strokeWidth={1.5} style={{ marginBottom: '1.5rem' }} />
-                        <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 400 }}>Timeline</h3>
+                        <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem', fontWeight: 400 }}>Horario</h3>
                         <ul style={{ listStyle: 'none', padding: 0, fontSize: '0.95rem', lineHeight: 2 }}>
-                            <li>5:00 PM - Ceremony</li>
-                            <li>6:00 PM - Cocktail Hour</li>
-                            <li>8:00 PM - Dinner & Dancing</li>
+                            <li>17:00 - Ceremonia</li>
+                            <li>18:00 - Cóctel</li>
+                            <li>20:00 - Cena y Baile</li>
                         </ul>
                     </motion.div>
                 </div>
