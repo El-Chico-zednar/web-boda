@@ -23,12 +23,13 @@ const ParallaxSection = () => {
     const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-10%']);
     const skyOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [1, 0.8, 0.6, 0.9]);
 
-    // Cathedral photo - only Y movement (no scale)
-    const cathedralY = useTransform(smoothProgress, [0, 1], ['0%', '-5%']);
+    // Text - moves from center to left while scaling
+    const textY = useTransform(smoothProgress, [0, 0.3, 0.7, 1], ['-38%', '-38%', '-38%', '-38%']);
+    const textScale = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [2, 2, 1.8, 1.5]);
+    const textX = useTransform(smoothProgress, [0, 1], ['0%', '-20%']);
 
-    // Text - fastest (foreground)
-    const textY = useTransform(smoothProgress, [0, 0.3, 0.7, 1], ['0%', '5%', '5%', '-60%']);
-    const textScale = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [1, 1.05, 1.05, 0.9]);
+    // Cathedral image scale - zoom effect for mobile
+    const cathedralScale = useTransform(smoothProgress, [0, 1], [1.4, 1]);
 
 
 
@@ -91,7 +92,7 @@ const ParallaxSection = () => {
                 </motion.div>
 
                 {/* Layer 2: Frame with Cathedral Photo parallax inside */}
-                <motion.div
+                <div
                     style={{
                         position: 'absolute',
                         top: '50%',
@@ -103,31 +104,28 @@ const ParallaxSection = () => {
                         zIndex: 1,
                         border: '2px solid #4F3100',
                         borderRadius: '8px',
-                        overflow: 'hidden',
+                        overflow: 'hidden'
                     }}
                 >
-                    <motion.div
+                    {/* Cathedral image with animated object position and scale */}
+                    <motion.img
+                        src="/la-seo-photo.jpg"
+                        alt="La Seo Cathedral"
                         style={{
                             width: '100%',
-                            height: '120%',
-                            y: prefersReducedMotion ? 0 : cathedralY,
-                            willChange: 'transform'
+                            height: '100%',
+                            objectFit: 'cover',
+                            objectPosition: useTransform(
+                                smoothProgress,
+                                [0, 1],
+                                ['50% 0%', '50% 100%']
+                            ),
+                            scale: prefersReducedMotion ? 1 : cathedralScale,
+                            filter: 'brightness(0.9) contrast(1.15) saturate(1.1)',
+                            display: 'block'
                         }}
-                    >
-                        <div
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                backgroundImage: 'url(/la-seo-photo.jpg)',
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center center',
-                                backgroundRepeat: 'no-repeat',
-                                filter: 'brightness(0.9) contrast(1.15) saturate(1.1)',
-                                willChange: 'filter'
-                            }}
-                        />
-                    </motion.div>
-                </motion.div>
+                    />
+                </div>
 
 
 
@@ -153,13 +151,13 @@ const ParallaxSection = () => {
                         position: 'relative',
                         zIndex: 3,
                         y: prefersReducedMotion ? 0 : textY,
+                        x: prefersReducedMotion ? 0 : textX,
                         scale: prefersReducedMotion ? 1 : textScale,
                         opacity: 1,
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'flex-start',
+                        alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: 'max(5vw, 80px)',
                         width: '100%',
                         height: '100%',
                         willChange: 'transform, opacity'
@@ -167,8 +165,8 @@ const ParallaxSection = () => {
                 >
                     {/* LA SEO Text Image with Enhanced Effects */}
                     <motion.div
-                        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 1, scale: 0.5, rotateX: -10 }}
-                        whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 0.6, rotateX: 0 }}
+                        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 1, scale: 0.6, rotateX: -10 }}
+                        whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 0.55, rotateX: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.4, ease: customEase }}
                         style={{

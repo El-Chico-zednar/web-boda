@@ -81,7 +81,7 @@ const RSVP = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="italic">RSVP</h2>
+                    <h2 className="italic">Confirma tu asistencia</h2>
                     <p style={{
                         marginBottom: '4rem',
                         fontSize: '1.1rem',
@@ -89,7 +89,7 @@ const RSVP = () => {
                         maxWidth: '600px',
                         margin: '0 auto 4rem'
                     }}>
-                        Por favor, confírmanos tu asistencia antes del 1 de agosto de 2025.
+                        Por favor, confírmanos tu asistencia antes del 1 de febrero de 2026.
                     </p>
                 </motion.div>
 
@@ -102,7 +102,7 @@ const RSVP = () => {
                         maxWidth: '600px',
                         margin: '0 auto',
                         textAlign: 'left',
-                        padding: '4rem',
+                        padding: '2rem',
                         backgroundColor: '#FFFFFF',
                         boxShadow: '0 20px 40px rgba(0,0,0,0.04)'
                     }}
@@ -182,7 +182,8 @@ const RSVP = () => {
                                         fontWeight: formData.transport === 'autobus' ? 600 : 400,
                                         display: 'flex',
                                         alignItems: 'center',
-                                        justifyContent: 'center'
+                                        justifyContent: 'center',
+                                        gap: '0.5rem'
                                     }}>
                                         <input
                                             type="radio"
@@ -192,6 +193,24 @@ const RSVP = () => {
                                             onChange={handleChange}
                                             style={{ display: 'none' }}
                                         />
+                                        {formData.transport === 'autobus' && (
+                                            <svg
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                style={{ flexShrink: 0 }}
+                                            >
+                                                <path
+                                                    d="M13.5 4L6 11.5L2.5 8"
+                                                    stroke="var(--color-primary)"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </svg>
+                                        )}
                                         Autobús
                                     </label>
                                     <label style={{
@@ -206,7 +225,8 @@ const RSVP = () => {
                                         fontWeight: formData.transport === 'vehiculo_propio' ? 600 : 400,
                                         display: 'flex',
                                         alignItems: 'center',
-                                        justifyContent: 'center'
+                                        justifyContent: 'center',
+                                        gap: '0.5rem'
                                     }}>
                                         <input
                                             type="radio"
@@ -216,6 +236,24 @@ const RSVP = () => {
                                             onChange={handleChange}
                                             style={{ display: 'none' }}
                                         />
+                                        {formData.transport === 'vehiculo_propio' && (
+                                            <svg
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 16 16"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                style={{ flexShrink: 0 }}
+                                            >
+                                                <path
+                                                    d="M13.5 4L6 11.5L2.5 8"
+                                                    stroke="var(--color-primary)"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </svg>
+                                        )}
                                         Vehículo propio
                                     </label>
                                 </div>

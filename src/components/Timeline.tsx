@@ -5,28 +5,47 @@ const Timeline = () => {
 
     const timelineItems = [
         {
+            time: "12:30",
+            title: "Recepción de invitados",
+            description: "Plaza de La Seo",
+            icon: "🤝",
+            showTime: true
+        },
+        {
             time: "13:00",
             title: "Ceremonia",
             description: "La Seo - Catedral del Salvador",
-            icon: "💒"
+            icon: "💒",
+            showTime: true
         },
         {
             time: "14:30",
             title: "Cóctel de Bienvenida",
-            description: "Finca La Casona de Las Fraguas",
-            icon: "🥂"
+            description: "Finca Jardines del Monasterio",
+            icon: "🥂",
+            showTime: false,
+            link: "https://www.google.com/maps?um=1&ie=UTF-8&fb=1&gl=es&sa=X&geocode=KblmQK-3QVkNMXyEb5aNMbj7&daddr=C.+los+Olivares,+2,+50420+Cadrete,+Zaragoza"
         },
         {
             time: "16:00",
             title: "Banquete",
             description: "Salón principal",
-            icon: "🍽️"
+            icon: "🍽️",
+            showTime: false
         },
         {
             time: "18:30",
             title: "Baile y Celebración",
-            description: "¡A bailar hasta el amanecer!",
-            icon: "💃"
+            description: "¡A bailar!",
+            icon: "💃",
+            showTime: false
+        },
+        {
+            time: "02:00",
+            title: "Servicio de taxis",
+            description: "Disponible para todos los invitados",
+            icon: "🚕",
+            showTime: false
         }
     ];
 
@@ -58,10 +77,7 @@ const Timeline = () => {
                     style={{ textAlign: 'center', marginBottom: '5rem' }}
                 >
                     <h2 className="italic" style={{
-                        background: 'linear-gradient(135deg, var(--color-primary), #c4a574)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
+                        color: 'var(--color-text)',
                         marginBottom: '2rem'
                     }}>
                         Cronograma del Día
@@ -85,16 +101,19 @@ const Timeline = () => {
                     position: 'relative'
                 }}>
                     {/* Vertical line */}
-                    <div style={{
-                        position: 'absolute',
-                        left: '50%',
-                        top: '0',
-                        bottom: '0',
-                        width: '2px',
-                        background: 'linear-gradient(180deg, transparent, var(--color-accent), transparent)',
-                        transform: 'translateX(-50%)',
-                        opacity: 0.3
-                    }} />
+                    <div
+                        className="timeline-vertical-line"
+                        style={{
+                            position: 'absolute',
+                            left: '50%',
+                            top: '0',
+                            bottom: '0',
+                            width: '2px',
+                            background: 'linear-gradient(180deg, transparent, var(--color-accent), transparent)',
+                            transform: 'translateX(-50%)',
+                            opacity: 0.3
+                        }}
+                    />
 
                     {timelineItems.map((item, index) => (
                         <motion.div
@@ -106,42 +125,33 @@ const Timeline = () => {
                             style={{
                                 display: 'grid',
                                 gridTemplateColumns: index % 2 === 0 ? '1fr auto 1fr' : '1fr auto 1fr',
-                                gap: '2rem',
+                                gap: '4rem',
                                 marginBottom: index === timelineItems.length - 1 ? '0' : '4rem',
                                 alignItems: 'center'
                             }}
+                            className="timeline-item"
                         >
                             {/* Left side (card or empty) */}
                             {index % 2 === 0 ? (
                                 <motion.div
-                                    whileHover={{
-                                        y: -8,
-                                        transition: { duration: 0.3, ease: customEase }
-                                    }}
+
                                     style={{
-                                        padding: '2.5rem 2rem',
+                                        padding: '1rem 2rem',
                                         backgroundColor: '#FFFFFF',
                                         boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                                         position: 'relative',
-                                        borderRadius: '2px',
+                                        borderRadius: '24px',
                                         overflow: 'hidden',
                                         textAlign: 'right'
                                     }}
+                                    className="timeline-card"
                                 >
-                                    {/* Gradient border */}
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        right: 0,
-                                        height: '3px',
-                                        background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)'
-                                    }} />
+
 
                                     {/* Icon */}
                                     <div style={{
-                                        fontSize: '2.5rem',
-                                        marginBottom: '1rem',
+                                        fontSize: '2rem',
+                                        marginBottom: '0.2rem',
                                         filter: 'grayscale(0.3)'
                                     }}>
                                         {item.icon}
@@ -161,10 +171,55 @@ const Timeline = () => {
                                         color: 'var(--color-text)',
                                         opacity: 0.8,
                                         lineHeight: 1.6,
-                                        margin: 0
+                                        margin: 0,
+                                        marginBottom: item.link ? '1rem' : 0
                                     }}>
                                         {item.description}
                                     </p>
+
+                                    {item.link && (
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                                display: 'inline-flex',
+                                                alignItems: 'center',
+                                                gap: '0.5rem',
+                                                color: 'var(--color-primary)',
+                                                textDecoration: 'none',
+                                                fontSize: '0.95rem',
+                                                fontWeight: 500,
+                                                transition: 'all 0.3s ease',
+                                                fontFamily: 'var(--font-body)',
+                                                marginTop: '0rem'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.color = '#8B6914';
+                                                const arrow = e.currentTarget.querySelector('.arrow');
+                                                if (arrow) (arrow as HTMLElement).style.transform = 'translateX(4px)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.color = 'var(--color-primary)';
+                                                const arrow = e.currentTarget.querySelector('.arrow');
+                                                if (arrow) (arrow as HTMLElement).style.transform = 'translateX(0)';
+                                            }}
+                                        >
+                                            Cómo llegar
+                                            <span
+                                                className="arrow"
+                                                style={{
+                                                    transition: 'transform 0.3s ease',
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center'
+                                                }}
+                                            >
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    )}
 
                                     {/* Glow effect */}
                                     <motion.div
@@ -186,7 +241,7 @@ const Timeline = () => {
                                     />
                                 </motion.div>
                             ) : (
-                                <div />
+                                <div className="timeline-spacer" />
                             )}
 
                             {/* Center (time circle) */}
@@ -196,61 +251,55 @@ const Timeline = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.15 + 0.3, ease: customEase }}
                                 style={{
-                                    width: '100px',
-                                    height: '100px',
+                                    width: item.showTime ? '85px' : '40px',
+                                    height: item.showTime ? '85px' : '40px',
                                     borderRadius: '50%',
                                     backgroundColor: '#FFFFFF',
-                                    border: '3px solid var(--color-accent)',
+                                    border: '2px solid var(--color-accent)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     position: 'relative',
                                     zIndex: 2,
-                                    boxShadow: '0 8px 24px rgba(0,0,0,0.1)'
+                                    boxShadow: '0 2px 24px rgba(0,0,0,0.1)',
+                                    flexShrink: 0
                                 }}
+                                className={`timeline-circle ${!item.showTime ? 'timeline-circle-small' : ''}`}
                             >
-                                <span style={{
-                                    fontSize: '1.1rem',
-                                    fontWeight: 600,
-                                    color: 'var(--color-primary)',
-                                    fontFamily: 'var(--font-body)',
-                                    letterSpacing: '0.05em'
-                                }}>
-                                    {item.time}
-                                </span>
+                                {item.showTime && (
+                                    <span style={{
+                                        fontSize: '1.1rem',
+                                        fontWeight: 600,
+                                        color: 'var(--color-primary)',
+                                        fontFamily: 'var(--font-body)',
+                                        letterSpacing: '0.05em'
+                                    }}>
+                                        {item.time}
+                                    </span>
+                                )}
                             </motion.div>
 
                             {/* Right side (card or empty) */}
                             {index % 2 !== 0 ? (
                                 <motion.div
-                                    whileHover={{
-                                        y: -8,
-                                        transition: { duration: 0.3, ease: customEase }
-                                    }}
+
                                     style={{
-                                        padding: '2.5rem 2rem',
+                                        padding: '1rem 2rem',
                                         backgroundColor: '#FFFFFF',
                                         boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                                         position: 'relative',
-                                        borderRadius: '2px',
+                                        borderRadius: '24px',
                                         overflow: 'hidden',
                                         textAlign: 'left'
                                     }}
+                                    className="timeline-card"
                                 >
-                                    {/* Gradient border */}
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        right: 0,
-                                        height: '3px',
-                                        background: 'linear-gradient(90deg, transparent, var(--color-accent), transparent)'
-                                    }} />
+
 
                                     {/* Icon */}
                                     <div style={{
-                                        fontSize: '2.5rem',
-                                        marginBottom: '1rem',
+                                        fontSize: '2rem',
+                                        marginBottom: '0.2rem',
                                         filter: 'grayscale(0.3)'
                                     }}>
                                         {item.icon}
@@ -270,10 +319,55 @@ const Timeline = () => {
                                         color: 'var(--color-text)',
                                         opacity: 0.8,
                                         lineHeight: 1.6,
-                                        margin: 0
+                                        margin: 0,
+                                        marginBottom: item.link ? '1rem' : 0
                                     }}>
                                         {item.description}
                                     </p>
+
+                                    {item.link && (
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                                display: 'inline-flex',
+                                                alignItems: 'center',
+                                                gap: '0rem',
+                                                color: 'var(--color-primary)',
+                                                textDecoration: 'none',
+                                                fontSize: '0.95rem',
+                                                fontWeight: 500,
+                                                transition: 'all 0.3s ease',
+                                                fontFamily: 'var(--font-body)',
+                                                marginTop: '0rem'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.color = '#8B6914';
+                                                const arrow = e.currentTarget.querySelector('.arrow');
+                                                if (arrow) (arrow as HTMLElement).style.transform = 'translateX(4px)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.color = 'var(--color-primary)';
+                                                const arrow = e.currentTarget.querySelector('.arrow');
+                                                if (arrow) (arrow as HTMLElement).style.transform = 'translateX(0)';
+                                            }}
+                                        >
+                                            Cómo llegar
+                                            <span
+                                                className="arrow"
+                                                style={{
+                                                    transition: 'transform 0.3s ease',
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center'
+                                                }}
+                                            >
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    )}
 
                                     {/* Glow effect */}
                                     <motion.div
@@ -295,11 +389,53 @@ const Timeline = () => {
                                     />
                                 </motion.div>
                             ) : (
-                                <div />
+                                <div className="timeline-spacer" />
                             )}
                         </motion.div>
                     ))}
                 </div>
+
+                {/* CSS for mobile responsive */}
+                <style>{`
+                    @media (max-width: 768px) {
+                        .timeline-vertical-line {
+                            left: 35px !important;
+                            transform: none !important;
+                        }
+                        
+                        .timeline-item {
+                            grid-template-columns: auto 1fr !important;
+                            gap: 1rem !important;
+                        }
+                        
+                        .timeline-spacer {
+                            display: none !important;
+                        }
+                        
+                        .timeline-circle {
+                            width: 70px !important;
+                            height: 70px !important;
+                            order: 1;
+                        }
+
+                        .timeline-circle-small {
+                            width: 30px !important;
+                            height: 30px !important;
+                            margin-left: 20px !important;
+                            margin-right: 20px !important;
+                        }
+                        
+                        .timeline-circle span {
+                            font-size: 0.9rem !important;
+                        }
+                        
+                        .timeline-card {
+                            order: 2;
+                            text-align: left !important;
+                            padding: 1.5rem 1.25rem !important;
+                        }
+                    }
+                `}</style>
             </div>
         </section>
     );
