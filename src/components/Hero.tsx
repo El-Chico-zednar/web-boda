@@ -8,9 +8,8 @@ const Hero = () => {
       position: 'relative',
       overflow: 'hidden',
       display: 'flex',
-      alignItems: 'flex-start',
+      alignItems: 'center',
       justifyContent: 'center',
-      paddingTop: '15vh',
       color: 'var(--color-text)'
     }}>
       {/* Content */}
@@ -23,7 +22,7 @@ const Hero = () => {
             fontFamily: 'var(--font-body)',
             textTransform: 'uppercase',
             letterSpacing: '0.3em',
-            fontSize: '0.9rem',
+            fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
             marginBottom: '1.5rem',
             color: 'var(--color-accent)'
           }}
@@ -36,8 +35,8 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
           style={{
-            fontSize: 'clamp(4rem, 12vw, 8rem)',
-            lineHeight: 0.9,
+            fontSize: 'clamp(5.5rem, 12vw, 8rem)',
+            lineHeight: 0.8,
             marginBottom: '1rem',
             color: 'var(--color-primary)'
           }}
@@ -60,14 +59,14 @@ const Hero = () => {
           }}
         >
           <p style={{
-            fontSize: '1.5rem',
+            fontSize: 'clamp(1.2rem, 3.5vw, 1.5rem)',
             fontFamily: 'var(--font-heading)',
             margin: 0
           }}>
             21 . 02 . 2026
           </p>
           <p style={{
-            fontSize: '0.9rem',
+            fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
             textTransform: 'uppercase',
             letterSpacing: '0.2em',
             margin: 0
