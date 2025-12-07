@@ -1,26 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root {
   /* Editorial Romance Palette - Warm & Elegant */
   --color-bg: #EFE2D9;
   /* User requested warm beige */
-  --color-text: #262626;
+  --color-text: #5C2A00;
   /* Darker Charcoal for contrast on darker bg */
-  --color-primary: #262626;
+  --color-primary: #5C2A00;
   /* Main actions/headings */
-  --color-accent: #5C6B4B;
+  --color-accent: #5C2A00;
   /* Darker Olive - Elegant nature tone */
   --color-secondary: #B0A8A0;
   /* Darker Warm Grey for borders/lines */
   --color-white: #FFFFFF;
 
   /* Typography */
-  --font-heading: 'Cormorant Garamond', serif;
+  --font-heading: 'Abhaya Libre', serif;
   --font-body: 'Montserrat', sans-serif;
+  --font-names: 'Claire Amoreth', sans-serif;
 
   /* Spacing */
   --spacing-section: 8rem;
   --spacing-container: 1.5rem;
+}
+
+@font-face {
+  font-family: 'Claire Amoreth';
+  src: url('/ClaireAmoreth-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
@@ -63,7 +71,6 @@ h1 {
 h2 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: 2rem;
-  font-style: italic;
 }
 
 p {
@@ -121,6 +128,5 @@ p {
 
 /* Utility for italic accents in headings */
 .italic {
-  font-style: italic;
   font-family: var(--font-heading);
 }

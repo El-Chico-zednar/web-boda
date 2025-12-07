@@ -8,21 +8,39 @@ const Timeline = () => {
             time: "12:30",
             title: "Recepción de invitados",
             description: "Plaza de La Seo",
-            icon: "🤝",
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            ),
             showTime: true
         },
         {
             time: "13:00",
             title: "Ceremonia",
             description: "La Seo - Catedral del Salvador",
-            icon: "💒",
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path>
+                    <path d="M16 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path>
+                </svg>
+            ),
             showTime: true
         },
         {
             time: "14:30",
             title: "Cóctel de Bienvenida",
             description: "Finca Jardines del Monasterio",
-            icon: "🥂",
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 21h8" />
+                    <path d="M12 21v-8" />
+                    <path d="M6 4h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" />
+                </svg>
+            ),
             showTime: false,
             link: "https://www.google.com/maps?um=1&ie=UTF-8&fb=1&gl=es&sa=X&geocode=KblmQK-3QVkNMXyEb5aNMbj7&daddr=C.+los+Olivares,+2,+50420+Cadrete,+Zaragoza"
         },
@@ -30,21 +48,40 @@ const Timeline = () => {
             time: "16:00",
             title: "Banquete",
             description: "Salón principal",
-            icon: "🍽️",
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                    <path d="M7 2v20" />
+                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+                </svg>
+            ),
             showTime: false
         },
         {
             time: "18:30",
             title: "Baile y Celebración",
             description: "¡A bailar!",
-            icon: "💃",
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 18V5l12-2v13" />
+                    <circle cx="6" cy="18" r="3" />
+                    <circle cx="18" cy="16" r="3" />
+                </svg>
+            ),
             showTime: false
         },
         {
             time: "02:00",
             title: "Servicio de taxis",
             description: "Disponible para todos los invitados",
-            icon: "🚕",
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                    <circle cx="7" cy="17" r="2" />
+                    <circle cx="17" cy="17" r="2" />
+                    <path d="M5 17h8" />
+                </svg>
+            ),
             showTime: false
         }
     ];
@@ -78,14 +115,14 @@ const Timeline = () => {
                 >
                     <h2 className="italic" style={{
                         color: 'var(--color-text)',
-                        marginBottom: '2rem'
+                        marginBottom: '1rem'
                     }}>
                         Cronograma del Día
                     </h2>
                     <p style={{
                         maxWidth: '650px',
                         margin: '0 auto',
-                        fontSize: '1.15rem',
+                        fontSize: '1rem',
                         color: 'var(--color-text)',
                         lineHeight: 1.9,
                         opacity: 0.9
