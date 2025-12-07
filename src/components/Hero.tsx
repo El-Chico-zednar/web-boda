@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const Hero = () => {
   return (
     <section className="hero" style={{
-      height: '100vh',
+      height: '95vh',
       width: '100%',
       position: 'relative',
       overflow: 'hidden',
@@ -83,7 +83,7 @@ const Hero = () => {
         transition={{ duration: 1, delay: 2 }}
         style={{
           position: 'absolute',
-          bottom: '3rem',
+          bottom: '2rem',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
