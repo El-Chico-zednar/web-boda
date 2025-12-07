@@ -13,7 +13,7 @@ const Hero = () => {
       color: 'var(--color-text)'
     }}>
       {/* Content */}
-      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', marginTop: '-5vh' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', marginTop: '-12vh' }}>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ const Hero = () => {
         >
           <span style={{ fontFamily: 'var(--font-names)', display: 'block', marginTop: '4rem', marginBottom: '0rem', lineHeight: 0.5 }}>Paula</span>
           <span style={{ fontFamily: 'var(--font-names)', fontSize: '0.5em', verticalAlign: 'middle', opacity: 0.6, display: 'block', margin: '1rem 0' }}>y</span>
-          <span style={{ fontFamily: 'var(--font-names)', display: 'block', marginTop: '4rem', marginBottom: '3.5rem', lineHeight: 0.5 }}>Jorge</span>
+          <span style={{ fontFamily: 'var(--font-names)', display: 'block', marginTop: '4rem', marginBottom: '4rem', lineHeight: 0.5 }}>Jorge</span>
         </motion.h1>
 
         <motion.div
@@ -51,15 +51,15 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
           style={{
-            marginTop: '2rem',
+            marginTop: '0rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '0.5rem'
+            gap: '0.1rem'
           }}
         >
           <p style={{
-            fontSize: 'clamp(1.2rem, 3.5vw, 1.5rem)',
+            fontSize: 'clamp(1.1rem, 3.5vw, 1.2rem)',
             fontFamily: 'var(--font-heading)',
             margin: 0
           }}>
@@ -83,7 +83,7 @@ const Hero = () => {
         transition={{ duration: 1, delay: 2 }}
         style={{
           position: 'absolute',
-          bottom: '1rem',
+          bottom: '3rem',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
