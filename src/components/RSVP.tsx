@@ -5,19 +5,35 @@ import { supabase } from '../supabaseClient';
 const RSVP = () => {
     const [formData, setFormData] = useState({
         fullName: '',
-        email: '',
+        phone: '',
         guests: '1',
         transport: 'autobus',
         diet: ''
     });
+    const [additionalGuests, setAdditionalGuests] = useState<string[]>([]);
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+
+        if (name === 'guests') {
+            const guestCount = parseInt(value);
+            // Update additional guests array based on count
+            const newAdditionalGuests = Array(Math.max(0, guestCount - 1)).fill('');
+            setAdditionalGuests(newAdditionalGuests);
+        }
+
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value
         });
+    };
+
+    const handleAdditionalGuestChange = (index: number, value: string) => {
+        const newAdditionalGuests = [...additionalGuests];
+        newAdditionalGuests[index] = value;
+        setAdditionalGuests(newAdditionalGuests);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -30,8 +46,9 @@ const RSVP = () => {
                 .insert([
                     {
                         full_name: formData.fullName,
-                        email: formData.email,
+                        phone: formData.phone,
                         guests_count: parseInt(formData.guests),
+                        guest_names: additionalGuests.filter(name => name.trim() !== ''),
                         transportation: formData.transport,
                         dietary_restrictions: formData.diet
                     }
@@ -41,7 +58,8 @@ const RSVP = () => {
 
             setStatus('success');
             setMessage('¡Gracias! Hemos recibido tu confirmación.');
-            setFormData({ fullName: '', email: '', guests: '1', transport: 'autobus', diet: '' });
+            setFormData({ fullName: '', phone: '', guests: '1', transport: 'autobus', diet: '' });
+            setAdditionalGuests([]);
         } catch (error) {
             console.error('Error submitting RSVP:', error);
             setStatus('error');
@@ -84,7 +102,7 @@ const RSVP = () => {
                     <h2 className="italic">Confirma tu asistencia</h2>
                     <p style={{
                         marginBottom: '4rem',
-                        fontSize: '1.1rem',
+                        fontSize: '1rem',
                         color: 'var(--color-text)',
                         maxWidth: '600px',
                         margin: '0 auto 4rem'
@@ -135,14 +153,14 @@ const RSVP = () => {
                             </div>
 
                             <div style={{ marginBottom: '2.5rem' }}>
-                                <label style={labelStyle}>Email</label>
+                                <label style={labelStyle}>Teléfono de Contacto</label>
                                 <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
                                     onChange={handleChange}
                                     style={inputStyle}
-                                    placeholder="tu@email.com"
+                                    placeholder="600 123 456"
                                     required
                                 />
                             </div>
@@ -161,6 +179,27 @@ const RSVP = () => {
                                     <option value="4">4</option>
                                 </select>
                             </div>
+
+                            {/* Additional Guest Names */}
+                            {additionalGuests.length > 0 && (
+                                <div style={{ marginBottom: '2.5rem' }}>
+                                    {additionalGuests.map((guestName, index) => (
+                                        <div key={index} style={{ marginBottom: '1.5rem' }}>
+                                            <label style={labelStyle}>
+                                                Nombre Invitado {index + 2}
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={guestName}
+                                                onChange={(e) => handleAdditionalGuestChange(index, e.target.value)}
+                                                style={inputStyle}
+                                                placeholder={`Nombre del invitado ${index + 2}`}
+                                                required
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
 
                             <div style={{ marginBottom: '2.5rem' }}>
                                 <label style={labelStyle}>¿Cómo acudirás a la finca?</label>
