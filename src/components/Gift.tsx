@@ -12,7 +12,7 @@ const Gift = () => {
     };
 
     return (
-        <section className="section" style={{ backgroundColor: 'var(--color-bg)', padding: '4rem 0 6rem' }}>
+        <section className="section" style={{ backgroundColor: 'var(--color-bg)', padding: '0rem 0 4rem' }}>
             <div className="container text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -21,19 +21,12 @@ const Gift = () => {
                     transition={{ duration: 0.8 }}
                     style={{ maxWidth: '600px', margin: '0 auto' }}
                 >
-                    <h2 className="italic" style={{
-                        color: 'var(--color-primary)',
-                        marginBottom: '2rem',
-                        fontSize: '2rem'
-                    }}>
-                        Regalo
-                    </h2>
 
                     <p style={{
                         fontSize: '1rem',
                         color: 'var(--color-text)',
                         lineHeight: 1.8,
-                        marginBottom: '3rem',
+                        marginBottom: '2rem',
                         fontFamily: 'var(--font-body)',
                         opacity: 0.9
                     }}>
@@ -44,7 +37,7 @@ const Gift = () => {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '1rem'
+                        gap: '0.5rem'
                     }}>
                         <p style={{
                             fontSize: '1.1rem',
@@ -75,7 +68,7 @@ const Gift = () => {
                             onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
                             onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
                         >
-                            {copied ? '¡Copiado!' : 'Copiar'}
+                            {copied ? '¡Copiado!' : 'Copiar IBAN'}
                         </button>
                     </div>
                 </motion.div>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const Hero = () => {
   return (
     <section className="hero" style={{
-      height: '95vh',
+      height: '90vh',
       width: '100%',
       position: 'relative',
       overflow: 'hidden',
@@ -13,7 +13,7 @@ const Hero = () => {
       color: 'var(--color-text)'
     }}>
       {/* Content */}
-      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', marginTop: '-12vh' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', marginTop: '-14vh' }}>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
