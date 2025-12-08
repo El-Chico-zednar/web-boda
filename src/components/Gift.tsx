@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const Gift = () => {
     const [copied, setCopied] = useState(false);
-    const iban = "ES00 0000 0000 0000 0000 0000"; // Placeholder
+    const iban = "ES85 3191 0051 3566 2416 1318"; // Placeholder
 
     const handleCopy = () => {
         navigator.clipboard.writeText(iban);
