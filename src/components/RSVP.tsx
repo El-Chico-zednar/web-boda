@@ -107,7 +107,7 @@ const RSVP = () => {
                         maxWidth: '600px',
                         margin: '0 auto 4rem'
                     }}>
-                        Por favor, confírmanos tu asistencia antes del 1 de febrero de 2026.
+                        Por favor, confírmanos tu asistencia antes del 21 de enero de 2026.
                     </p>
                 </motion.div>
 
@@ -177,6 +177,7 @@ const RSVP = () => {
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
 
