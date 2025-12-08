@@ -31,6 +31,20 @@ const Timeline = () => {
             showTime: true
         },
         {
+            time: "14:15",
+            title: "Autobuses",
+            description: "Salida hacia la finca",
+            icon: (
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="6" width="18" height="12" rx="2" />
+                    <circle cx="7" cy="18" r="2" />
+                    <circle cx="17" cy="18" r="2" />
+                    <path d="M3 11h18" />
+                </svg>
+            ),
+            showTime: false
+        },
+        {
             time: "14:30",
             title: "Cóctel de Bienvenida",
             description: "Finca Jardines del Monasterio",
