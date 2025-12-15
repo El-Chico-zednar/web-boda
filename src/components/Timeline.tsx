@@ -188,7 +188,7 @@ const Timeline = () => {
 
                                     style={{
                                         padding: '1rem 2rem',
-                                        backgroundColor: '#FFFFFF68',
+                                        backgroundColor: '#F5ECE5',
                                         boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                                         position: 'relative',
                                         borderRadius: '24px',
@@ -305,7 +305,7 @@ const Timeline = () => {
                                     width: item.showTime ? '85px' : '40px',
                                     height: item.showTime ? '85px' : '40px',
                                     borderRadius: '50%',
-                                    backgroundColor: '#FFFFFF68',
+                                    backgroundColor: '#F5ECE5',
                                     border: '2px solid var(--color-accent)',
                                     display: 'flex',
                                     alignItems: 'center',
@@ -336,7 +336,7 @@ const Timeline = () => {
 
                                     style={{
                                         padding: '1rem 2rem',
-                                        backgroundColor: '#FFFFFF68',
+                                        backgroundColor: '#F5ECE5',
                                         boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                                         position: 'relative',
                                         borderRadius: '24px',
