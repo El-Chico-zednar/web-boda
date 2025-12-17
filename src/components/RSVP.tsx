@@ -307,6 +307,7 @@ const RSVP = () => {
                                     onChange={handleChange}
                                     style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
                                     placeholder="¿Alguna alergia o petición especial?"
+                                    required
                                 ></textarea>
                             </div>
 
