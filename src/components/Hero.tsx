@@ -42,7 +42,7 @@ const Hero = () => {
           }}
         >
           <span style={{ fontFamily: 'var(--font-names)', display: 'block', marginTop: '4rem', marginBottom: '0rem', lineHeight: 0.5 }}>Paula</span>
-          <span style={{ fontFamily: 'var(--font-names)', fontSize: '0.5em', verticalAlign: 'middle', opacity: 0.6, display: 'block', margin: '1rem 0' }}>y</span>
+          <span style={{ fontFamily: 'var(--font-names)', fontSize: '0.5em', verticalAlign: 'middle', opacity: 0.6, display: 'block', margin: '00.5rem 0' }}>y</span>
           <span style={{ fontFamily: 'var(--font-names)', display: 'block', marginTop: '4rem', marginBottom: '4rem', lineHeight: 0.5 }}>Jorge</span>
         </motion.h1>
 
