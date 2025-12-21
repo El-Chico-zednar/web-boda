@@ -16,18 +16,19 @@ const RSVP = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
+        if (!name) return;
 
         if (name === 'guests') {
-            const guestCount = parseInt(value);
+            const guestCount = parseInt(value) || 1;
             // Update additional guests array based on count
             const newAdditionalGuests = Array(Math.max(0, guestCount - 1)).fill('');
             setAdditionalGuests(newAdditionalGuests);
         }
 
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [name]: value
-        });
+        }));
     };
 
     const handleAdditionalGuestChange = (index: number, value: string) => {
@@ -95,8 +96,7 @@ const RSVP = () => {
             <div className="container text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
                     <h2 className="italic">Confirma tu asistencia</h2>
@@ -113,8 +113,7 @@ const RSVP = () => {
 
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     style={{
                         maxWidth: '600px',
@@ -122,7 +121,9 @@ const RSVP = () => {
                         textAlign: 'left',
                         padding: '2rem',
                         backgroundColor: '#FFFFFF',
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.04)'
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.04)',
+                        minHeight: '400px',
+                        overflow: 'visible'
                     }}
                 >
                     {status === 'success' ? (
@@ -210,92 +211,118 @@ const RSVP = () => {
                                     gap: '1rem',
                                     marginTop: '1rem'
                                 }}>
-                                    <label style={{
-                                        padding: '1.5rem 1rem',
-                                        border: `2px solid ${formData.transport === 'autobus' ? 'var(--color-primary)' : 'var(--color-secondary)'}`,
-                                        backgroundColor: formData.transport === 'autobus' ? 'rgba(45, 45, 45, 0.03)' : 'transparent',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.3s ease',
-                                        textAlign: 'center',
-                                        fontFamily: 'var(--font-body)',
-                                        fontSize: '0.95rem',
-                                        fontWeight: formData.transport === 'autobus' ? 600 : 400,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem'
-                                    }}>
+                                    <div>
                                         <input
                                             type="radio"
+                                            id="transport-autobus"
                                             name="transport"
                                             value="autobus"
                                             checked={formData.transport === 'autobus'}
                                             onChange={handleChange}
-                                            style={{ display: 'none' }}
+                                            style={{
+                                                position: 'absolute',
+                                                opacity: 0,
+                                                width: 0,
+                                                height: 0
+                                            }}
                                         />
-                                        {formData.transport === 'autobus' && (
-                                            <svg
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 16 16"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                style={{ flexShrink: 0 }}
-                                            >
-                                                <path
-                                                    d="M13.5 4L6 11.5L2.5 8"
-                                                    stroke="var(--color-primary)"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                        )}
-                                        Autobús
-                                    </label>
-                                    <label style={{
-                                        padding: '1.5rem 1rem',
-                                        border: `2px solid ${formData.transport === 'vehiculo_propio' ? 'var(--color-primary)' : 'var(--color-secondary)'}`,
-                                        backgroundColor: formData.transport === 'vehiculo_propio' ? 'rgba(45, 45, 45, 0.03)' : 'transparent',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.3s ease',
-                                        textAlign: 'center',
-                                        fontFamily: 'var(--font-body)',
-                                        fontSize: '0.95rem',
-                                        fontWeight: formData.transport === 'vehiculo_propio' ? 600 : 400,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        gap: '0.5rem'
-                                    }}>
+                                        <label
+                                            htmlFor="transport-autobus"
+                                            style={{
+                                                padding: '1.5rem 1rem',
+                                                border: `2px solid ${formData.transport === 'autobus' ? 'var(--color-primary)' : 'var(--color-secondary)'}`,
+                                                backgroundColor: formData.transport === 'autobus' ? 'rgba(45, 45, 45, 0.03)' : 'transparent',
+                                                cursor: 'pointer',
+                                                transition: 'all 0.3s ease',
+                                                textAlign: 'center',
+                                                fontFamily: 'var(--font-body)',
+                                                fontSize: '0.95rem',
+                                                fontWeight: formData.transport === 'autobus' ? 600 : 400,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '0.5rem',
+                                                width: '100%',
+                                                height: '100%'
+                                            }}
+                                        >
+                                            {formData.transport === 'autobus' && (
+                                                <svg
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 16 16"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    style={{ flexShrink: 0 }}
+                                                >
+                                                    <path
+                                                        d="M13.5 4L6 11.5L2.5 8"
+                                                        stroke="var(--color-primary)"
+                                                        strokeWidth="2"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+                                                </svg>
+                                            )}
+                                            Autobús
+                                        </label>
+                                    </div>
+                                    <div>
                                         <input
                                             type="radio"
+                                            id="transport-vehiculo"
                                             name="transport"
                                             value="vehiculo_propio"
                                             checked={formData.transport === 'vehiculo_propio'}
                                             onChange={handleChange}
-                                            style={{ display: 'none' }}
+                                            style={{
+                                                position: 'absolute',
+                                                opacity: 0,
+                                                width: 0,
+                                                height: 0
+                                            }}
                                         />
-                                        {formData.transport === 'vehiculo_propio' && (
-                                            <svg
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 16 16"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                style={{ flexShrink: 0 }}
-                                            >
-                                                <path
-                                                    d="M13.5 4L6 11.5L2.5 8"
-                                                    stroke="var(--color-primary)"
-                                                    strokeWidth="2"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                        )}
-                                        Vehículo propio
-                                    </label>
+                                        <label
+                                            htmlFor="transport-vehiculo"
+                                            style={{
+                                                padding: '1.5rem 1rem',
+                                                border: `2px solid ${formData.transport === 'vehiculo_propio' ? 'var(--color-primary)' : 'var(--color-secondary)'}`,
+                                                backgroundColor: formData.transport === 'vehiculo_propio' ? 'rgba(45, 45, 45, 0.03)' : 'transparent',
+                                                cursor: 'pointer',
+                                                transition: 'all 0.3s ease',
+                                                textAlign: 'center',
+                                                fontFamily: 'var(--font-body)',
+                                                fontSize: '0.95rem',
+                                                fontWeight: formData.transport === 'vehiculo_propio' ? 600 : 400,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: '0.5rem',
+                                                width: '100%',
+                                                height: '100%'
+                                            }}
+                                        >
+                                            {formData.transport === 'vehiculo_propio' && (
+                                                <svg
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 16 16"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    style={{ flexShrink: 0 }}
+                                                >
+                                                    <path
+                                                        d="M13.5 4L6 11.5L2.5 8"
+                                                        stroke="var(--color-primary)"
+                                                        strokeWidth="2"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+                                                </svg>
+                                            )}
+                                            Vehículo propio
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -305,7 +332,7 @@ const RSVP = () => {
                                     name="diet"
                                     value={formData.diet}
                                     onChange={handleChange}
-                                    style={{ ...inputStyle, minHeight: '80px', resize: 'vertical' }}
+                                    style={{ ...inputStyle, minHeight: '80px', resize: 'none', padding: '1rem' }}
                                     placeholder="¿Alguna alergia o petición especial?"
                                     required
                                 ></textarea>
