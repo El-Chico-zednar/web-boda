@@ -47,7 +47,7 @@ const Timeline = () => {
         {
             time: "14:30",
             title: "Cóctel de Bienvenida",
-            description: "Finca Jardines del Monasterio",
+            description: "Finca Viñedos Rhey",
             icon: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M8 21h8" />
@@ -56,7 +56,7 @@ const Timeline = () => {
                 </svg>
             ),
             showTime: false,
-            link: "https://www.google.com/maps?um=1&ie=UTF-8&fb=1&gl=es&sa=X&geocode=KblmQK-3QVkNMXyEb5aNMbj7&daddr=C.+los+Olivares,+2,+50420+Cadrete,+Zaragoza"
+            link: "https://www.google.com/maps?q=Vi%C3%B1edos+Rhey+Cadrete+Zaragoza"
         },
         {
             time: "16:00",
